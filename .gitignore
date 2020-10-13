@@ -102,3 +102,47 @@ dist
 
 # TernJS port file
 .tern-port
+
+########
+# ExpressJS 
+########
+
+# OS X
+.DS_Store*
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+
+# npm
+node_modules
+package-lock.json
+*.log
+*.gz
+
+
+# Coveralls
+coverage
+
+# Benchmarking
+benchmarks/graphs
+
+
+# Gitignore for vueJS front-end
+front-end/.DS_Store
+front-end/Thumbs.db
+front-end/db.json
+front-end/*.log
+front-end/node_modules/
+front-end/public/
+front-end/.deploy*/
+front-end/src/_drafts
+front-end/package-lock.json
