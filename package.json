@@ -1,0 +1,29 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "LAI TAK LOK 304 CEM Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js process.env.HTTPS=true --ignore './temp_upload'"
+  },
+  "author": "LAI TAK LOK",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^7.2.5",
+    "@vue/cli": "^4.5.4",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.23.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "env": "0.0.2",
+    "express": "^4.17.1",
+    "joi": "^17.2.1",
+    "monk": "^7.3.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4",
+    "promise.waterfall": "^3.2.0"
+  }
+}

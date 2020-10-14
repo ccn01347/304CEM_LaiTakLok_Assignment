@@ -135,6 +135,9 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
+# temp upload
+temp_upload
+
 
 # Gitignore for vueJS front-end
 front-end/.DS_Store
@@ -146,3 +149,4 @@ front-end/public/
 front-end/.deploy*/
 front-end/src/_drafts
 front-end/package-lock.json
+front-end/yarn.lock
