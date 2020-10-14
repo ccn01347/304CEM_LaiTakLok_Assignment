@@ -12,6 +12,15 @@
   - Email Template Id
   
 The project use dotenv to centralize the private constant. You should have your own ```.env``` file in the root folder(``` 304CEM_LaiTakLok_Assignment ```).
+- Example .env file
+```
+CLOUDINARY_NAME='xxxxxx'
+CLOUDINARY_APIKEY='xxxxxx'
+CLOUDINARY_APISECRET='xxxxx'
+SENDGRID_APIKEY='xxxxxxx'
+SENDGRID_EMAILSENDER='xxxxx'
+SENDGRID_VERIFICATIONTEMPLATE_ID='xxxxx'
+```
 
 
 # 1 Install Back-end & front-end
