@@ -41,7 +41,7 @@
   - Body
   - Required:
 
-        platform >> socail platform supported. currently "facebook" only
+        platform >> social platform supported. currently "facebook" only
         email
         userid
         fbToken
