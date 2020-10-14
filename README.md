@@ -50,3 +50,7 @@ By default, the server is running with port 4000 and the front-end with 8080. i.
   - http://localhost:4000
 - Front-end url:
   - http://localhost:8080/main
+  
+# API Documentation
+  https://documenter.getpostman.com/view/13093604/TVRoY6u6
+
