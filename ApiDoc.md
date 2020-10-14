@@ -1,178 +1,181 @@
 
 - Response Structure
 
-    status: >> Status Code, 200 / 201 are success
-    data: >> Response data 
-    error: >> error message when occurred
+
+        status >> Status Code, 200 / 201 are success
+        data >> Response data 
+        error >> error message when occurred
 
 
 
 
 - End Point
-/api/signup
+### /api/signup ###
 
     POST
     
   - Body
-Required:
+  - Required:
 
-    username
-    email
-    pwd
+        username
+        email
+        pwd
 
 
 
 - End Point
-/api/login
+### /api/login ###
 
     POST
     
   - Body
-Required:
+  - Required:
 
-    email
-    pwd
+        email
+        pwd
 
 - End Point
-/api/platformlogin
+### /api/platformlogin
 
     POST
   - Body
-Required:
+  - Required:
 
-    platform >> socail platform supported. currently "facebook" only
-    email
-    userid
-    fbToken
-    name
-    avatarURL
+        platform >> socail platform supported. currently "facebook" only
+        email
+        userid
+        fbToken
+        name
+        avatarURL
 
 
 - End Point
-/api/favoritelist
+### /api/favoritelist
 
     POST
     
   - Body
-Required:
+  - Required:
 
-    userid
-    page
-    limit
+        userid
+        page
+        limit
 
 
 - End Point
-/api/isinfavoritelist
+### /api/isinfavoritelist
 
     GET
     
   - Params
-Required:
+  - Required:
 
-    url
-    userid
-    access_token
+        url
+        userid
+        access_token
 
 
 - End Point
-/api/favoritelist
+### /api/favoritelist
 
     PUT
     
   - Body
-Required:
+  - Required:
 
-    userid
-    url
+        userid
+        url
 
 
 - End Point
-/api/favoritelist
+### /api/favoritelist
 
     DELETE
     
   - Body
-Required:
+  - Required:
 
-    userid
-    url
+        userid
+        url
 
 
 - End Point
-/api/publicstickers
+### /api/publicstickers
 
     POST
     
 - End Point
-/api/memberverify
+### /api/memberverify
 
     GET
     
   - Params
-Required:
+  - Required:
 
-    email >> URL encoded required
+        email >> URL encoded required
 
 
 - End Point
-/api/memberinfo
+### /api/memberinfo
 
     POST
     
   - Body
-Required:
+  - Required:
 
-    userid
-    access_token
+        userid
+        access_token
 
 
 - End Point
-/api/membereditinfo
+### /api/membereditinfo
 
     POST
     
   - Body
-Required:
+  - Required:
 
-    userid
-    access_token
+        userid
+        access_token
     
-Optional:
+  - Optional:
 
-    tousername
-    toavatarURL
-    toaboutme
-    topwd
+        tousername
+        toavatarURL
+        toaboutme
+        topwd
 
 - End Point
-/api/forgetpassword
+### /api/forgetpassword
 
     POST
     
   - Body
-Required:
+  - Required:
 
-    email
+        email
 
 
 - End Point
-/api/uploadstickerjson
+### /api/uploadstickerjson
 
     POST
   - Body
-Required:(form-data)
-    userid
-    access_token
-    file
+  - Required:(form-data)
+
+        userid
+        access_token
+        file
 
 - End Point
-/api/uploadprofilepic
+### /api/uploadprofilepic
 
     POST
   - Body
-Required:(form-data)
-    userid
-    access_token
-    profilepic
+  - Required:(form-data)
+
+        userid
+        access_token
+        profilepic
 
 
