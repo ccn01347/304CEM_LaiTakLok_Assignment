@@ -1,15 +1,14 @@
 
-- Response Structure
-
+# Response Structure
 
         status >> Status Code, 200 / 201 are success
         data >> Response data 
         error >> error message when occurred
 
 
+# End-point
 
 
-- End Point
 ### /api/signup ###
 
     POST
@@ -34,7 +33,7 @@
         email
         pwd
 
-- End Point
+
 ### /api/platformlogin
 
     POST
@@ -49,7 +48,7 @@
         avatarURL
 
 
-- End Point
+
 ### /api/favoritelist
 
     POST
@@ -75,7 +74,7 @@
         access_token
 
 
-- End Point
+
 ### /api/favoritelist
 
     PUT
@@ -87,7 +86,7 @@
         url
 
 
-- End Point
+
 ### /api/favoritelist
 
     DELETE
@@ -99,12 +98,12 @@
         url
 
 
-- End Point
+
 ### /api/publicstickers
 
     POST
     
-- End Point
+
 ### /api/memberverify
 
     GET
@@ -115,7 +114,7 @@
         email >> URL encoded required
 
 
-- End Point
+
 ### /api/memberinfo
 
     POST
@@ -127,7 +126,7 @@
         access_token
 
 
-- End Point
+
 ### /api/membereditinfo
 
     POST
@@ -145,7 +144,7 @@
         toaboutme
         topwd
 
-- End Point
+
 ### /api/forgetpassword
 
     POST
@@ -156,7 +155,7 @@
         email
 
 
-- End Point
+
 ### /api/uploadstickerjson
 
     POST
@@ -167,7 +166,7 @@
         access_token
         file
 
-- End Point
+
 ### /api/uploadprofilepic
 
     POST
