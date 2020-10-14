@@ -10,6 +10,7 @@
   - API Key
   - Registered Email as Sender
   - Email Template Id
+  
 The project use dotenv to centralize the private constant. You should have your own ```.env``` file in the root folder(``` 304CEM_LaiTakLok_Assignment ```).
 
 
