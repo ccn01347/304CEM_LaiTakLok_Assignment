@@ -139,3 +139,19 @@
           profilepic
 
 
+### ```GET``` /api/favoritelistcount
+  - Params
+    - Required:
+
+          userid
+
+
+### ```GET``` /api/uploadlistcount
+  - Params
+    - Required:
+
+          userid
+
+
+
+
