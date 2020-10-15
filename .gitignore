@@ -145,7 +145,7 @@ front-end/Thumbs.db
 front-end/db.json
 front-end/*.log
 front-end/node_modules/
-front-end/public/
+# front-end/public/
 front-end/.deploy*/
 front-end/src/_drafts
 front-end/package-lock.json
