@@ -11,70 +11,70 @@
 
 ### ```POST```/api/signup
   - Body
-  - Required:
+    - Required:
 
-        username
-        email
-        pwd
+          username
+          email
+          pwd
 
 
 
 ### ```POST``` /api/login    
   - Body
-  - Required:
+    - Required:
 
-        email
-        pwd
+          email
+          pwd
 
 
 ### ```POST``` /api/platformlogin
   - Body
-  - Required:
+    - Required:
 
-        platform >> social platform supported. currently "facebook" only
-        email
-        userid
-        fbToken
-        name
-        avatarURL
+          platform >> social platform supported. currently "facebook" only
+          email
+          userid
+          fbToken
+          name
+          avatarURL
 
 
 
 ### ```POST``` /api/favoritelist
     
   - Body
-  - Required:
+    - Required:
 
-        userid
-        page
-        limit
+          userid
+          page
+          limit
 
 
 ### ```GET``` /api/isinfavoritelist
   - Params
-  - Required:
+    - Required:
 
-        url
-        userid
-        access_token
+          url
+          userid
+          access_token
 
 
 
 ### ```PUT``` /api/favoritelist 
   - Body
-  - Required:
+    - Required:
 
-        userid
-        url
+          userid
+          url
 
 
 
 ### ```DELETE``` /api/favoritelist 
   - Body
-  - Required:
+    - Required:
 
-        userid
-        url
+          userid
+          url
 
 
 
@@ -83,59 +83,59 @@
 
 ### ```GET``` /api/memberverify
   - Params
-  - Required:
+    - Required:
 
-        email >> URL encoded required
+          email >> URL encoded required
 
 
 
 ### ```POST``` /api/memberinfo
   - Body
-  - Required:
+    - Required:
 
-        userid
-        access_token
+          userid
+          access_token
 
 
 
 ### ```POST``` /api/membereditinfo
   - Body
-  - Required:
+    - Required:
 
-        userid
-        access_token
+          userid
+          access_token
     
-  - Optional:
+    - Optional:
 
-        tousername
-        toavatarURL
-        toaboutme
-        topwd
+          tousername
+          toavatarURL
+          toaboutme
+          topwd
 
 
 ### ```POST``` /api/forgetpassword
   - Body
-  - Required:
+    - Required:
 
-        email
+          email
 
 
 
 ### ```POST``` /api/uploadstickerjson
   - Body
-  - Required:(form-data)
+    - Required:(form-data)
 
-        userid
-        access_token
-        file
+          userid
+          access_token
+          file
 
 
 ### ```POST``` /api/uploadprofilepic
   - Body
-  - Required:(form-data)
+    - Required:(form-data)
 
-        userid
-        access_token
-        profilepic
+          userid
+          access_token
+          profilepic
 
 
