@@ -9,10 +9,7 @@
 # End-point
 
 
-### /api/signup ###
-
-    POST
-    
+### ```POST```/api/signup
   - Body
   - Required:
 
@@ -22,11 +19,7 @@
 
 
 
-- End Point
-### /api/login ###
-
-    POST
-    
+### ```POST``` /api/login    
   - Body
   - Required:
 
@@ -34,9 +27,7 @@
         pwd
 
 
-### /api/platformlogin
-
-    POST
+### ```POST``` /api/platformlogin
   - Body
   - Required:
 
@@ -49,9 +40,7 @@
 
 
 
-### /api/favoritelist
-
-    POST
+### ```POST``` /api/favoritelist
     
   - Body
   - Required:
@@ -61,11 +50,7 @@
         limit
 
 
-- End Point
-### /api/isinfavoritelist
-
-    GET
-    
+### ```GET``` /api/isinfavoritelist
   - Params
   - Required:
 
@@ -75,10 +60,7 @@
 
 
 
-### /api/favoritelist
-
-    PUT
-    
+### ```PUT``` /api/favoritelist 
   - Body
   - Required:
 
@@ -87,10 +69,7 @@
 
 
 
-### /api/favoritelist
-
-    DELETE
-    
+### ```DELETE``` /api/favoritelist 
   - Body
   - Required:
 
@@ -99,15 +78,10 @@
 
 
 
-### /api/publicstickers
-
-    POST
+### ```POST``` /api/publicstickers
     
 
-### /api/memberverify
-
-    GET
-    
+### ```GET``` /api/memberverify
   - Params
   - Required:
 
@@ -115,10 +89,7 @@
 
 
 
-### /api/memberinfo
-
-    POST
-    
+### ```POST``` /api/memberinfo
   - Body
   - Required:
 
@@ -127,10 +98,7 @@
 
 
 
-### /api/membereditinfo
-
-    POST
-    
+### ```POST``` /api/membereditinfo
   - Body
   - Required:
 
@@ -145,10 +113,7 @@
         topwd
 
 
-### /api/forgetpassword
-
-    POST
-    
+### ```POST``` /api/forgetpassword
   - Body
   - Required:
 
@@ -156,9 +121,7 @@
 
 
 
-### /api/uploadstickerjson
-
-    POST
+### ```POST``` /api/uploadstickerjson
   - Body
   - Required:(form-data)
 
@@ -167,9 +130,7 @@
         file
 
 
-### /api/uploadprofilepic
-
-    POST
+### ```POST``` /api/uploadprofilepic
   - Body
   - Required:(form-data)
 
