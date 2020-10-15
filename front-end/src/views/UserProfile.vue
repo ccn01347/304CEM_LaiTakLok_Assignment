@@ -24,7 +24,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
-                                    <img v-bind:src="imageUrl ? imageUrl : 'img/brand/favicon.png'" class="rounded-circle">
+                                    <img v-bind:src="imageUrl ? imageUrl : 'img/icons/account_circle-24px.svg'" class="rounded-circle">
                                  </div>
                             </div>
                         </div>
@@ -38,11 +38,11 @@
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                         <div>
-                                            <span class="heading">22</span>
+                                            <span class="heading">{{favlistCount}}</span>
                                             <span class="description">Favourite List</span>
                                         </div>
                                         <div>
-                                            <span class="heading">10</span>
+                                            <span class="heading">{{uploadCount}}</span>
                                             <span class="description">Uploads</span>
                                         </div>
                                         <!-- <div>
@@ -187,7 +187,9 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
           aboutme: ''
         },
         imageUrl:'',
-        showUploadModal: false
+        showUploadModal: false,
+        favlistCount: 0,
+        uploadCount: 0
       }
     },
     mounted(){
@@ -199,6 +201,8 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
             })
         }else{
             this.fetchProfile();
+            this.fetchUploadCount();
+            this.fetchFavCount();
         }
 
     },
@@ -301,6 +305,35 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
             });
 
         },
+        fetchUploadCount: function(){
+            var userid = Cookies.get("userid");
+            const options = {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                })
+            };
+            const api = Constants.API.Host + '/api/favoritelistcount?userid=' + userid;
+            fetch(api, options).then((response) => {return response.json()}).then((result) => {
+                this.favlistCount = result.data;
+            })
+
+        },
+        fetchFavCount: function(){
+            var userid = Cookies.get("userid");
+            const options = {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                })
+            };
+            const api = Constants.API.Host + '/api/uploadlistcount?userid=' + userid;
+            fetch(api, options).then((response) => {return response.json()}).then((result) => {
+                this.uploadCount = result.data;
+            })
+        },
         onEditAvatar(){
             this.showUploadModal = true;
         },
@@ -308,6 +341,7 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
             this.fetchProfile();
             this.showUploadModal = false;
         }
+
     },
     computed:{
         headerStyle(){

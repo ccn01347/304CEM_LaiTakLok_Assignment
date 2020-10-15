@@ -79,7 +79,10 @@ import Cookies from 'js-cookie'
         return username;
       },
       avatarURL(){
-        return Cookies.get("avatarURL");
+        var avatarURL = Cookies.get("avatarURL");
+        if (avatarURL == 'undefined')
+          return null;
+        return avatarURL;
       }
     }
   };

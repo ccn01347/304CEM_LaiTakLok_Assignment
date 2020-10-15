@@ -15,6 +15,8 @@ const monk = require('monk');
 const SLUtils = require('./SLUtils.js');
 const Waterfall = require('promise.waterfall')
 const sgMail = require('@sendgrid/mail');
+const uploadList = require('./db/uploadlist');
+
 
 var multer  = require('multer');
 var storage = multer.diskStorage({
@@ -419,6 +421,27 @@ app.get('/api/isinfavoritelist', (req, res) => {
 	}
 });
 
+// ## API: Get Favorite List Count
+app.get('/api/favoritelistcount', (req, res) => {
+	var userid = req.query.userid;
+	favoritelist.totalCount(userid).then((count) => {
+		res.json(apiResult.create(200, count, null));
+	}).catch(error => {
+		res.json(apiResult.create(501, 0, error));
+	});
+
+})
+
+// ## API: Get Upload count
+app.get('/api/uploadlistcount', (req, res) => {
+	var userid = req.query.userid;
+	uploadList.totalCount(userid).then((count) => {
+		res.json(apiResult.create(200, count, null));
+	}).catch(error => {
+		res.json(apiResult.create(501, 0, error));
+	});
+})
+
 // TEST
 app.get('/api/test', (req, res) =>{
 
@@ -488,7 +511,6 @@ app.post('/api/uploadstickerjson', upload.single('file'), (req, res) => {
 		return;
 	}
 
-	const uploadList = require('./db/uploadlist');
 
 	// 1.a. Send the file to cloudinary
 	var originalName = formData.originalname;
