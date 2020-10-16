@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex-container">
+    <div class="flex-wrap">
       <div v-for="sticker in stickers" :key="sticker.image_data">
         <img class="grid-img" v-bind:src="base64ToPng(sticker.image_data)"/>
       </div>
@@ -31,14 +31,14 @@ export default{
 </script>
 
 <style>
-.flex-container {
+.flex-wrap {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   background-color: transparent;
-  width: 440px;
 }
 
-.flex-container > div {
+.flex-wrap > div {
   background-color: #f1f1f1;
   width: 80px;
   margin: 4px;
@@ -47,7 +47,7 @@ export default{
   font-size: 30px;
 }
 
-.flex-container .grid-img{
+.flex-wrap .grid-img{
   max-width: 100%;
   max-height: 100%;
   display: block

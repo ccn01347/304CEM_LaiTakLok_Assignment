@@ -183,20 +183,25 @@ app.post('/api/platformlogin', (req, res) => {
 		if (userInfo.verified){
 			// 1. update user profile and gen accesstoken
 			var current = new Date();
+			var access_token = SLUtils.genAccessToken(userInfo._id, userInfo.email, userInfo.pwd, current);
 			var to = {
 				last_login : current,
-				access_token : SLUtils.genAccessToken(userInfo._id, userInfo.email, userInfo.pwd, current),
+				access_token : access_token,
 				fb_token: fb_token,
 				fb_userid: fb_userid,
 				avatarURL: avatarURL
 				// avatarURL: "https://graph.facebook.com/" + fb_userid + "/picture?type=large"
 			};
-
-			console.log(180, to);
+			var newUserInfo = JSON.parse(JSON.stringify(userInfo));
+			newUserInfo.last_login = current;
+			newUserInfo.access_token = access_token;
+			newUserInfo.fb_token = fb_token;
+			newUserInfo.fb_userid = fb_userid;
+			newUserInfo.avatarURL = avatarURL;
 
 			members.findOneAndUpdate(userInfo, to).then(result => {
 				console.log(004);
-				res.json(apiResult.create(200, result, null));
+				res.json(apiResult.create(200, newUserInfo, null));
 			}).catch((error) => {
 				console.log(005);
 				res.json(apiResult.create(501, null, error));
@@ -452,8 +457,8 @@ app.delete('/api/favoritelist', (req, res) => {
 app.get('/api/isinfavoritelist', (req, res) => {
 	console.log(req.query.access_token);
 	var access_token = req.query.access_token;
-	if (access_token == 'undefined'){
-		res.json(apiResult.create(501, null, "Access Deny"));
+	if (access_token == 'undefined' || access_token == 'null' || !access_token){
+		res.json(apiResult.create(501, null, "Access Denied"));
 		return;
 	}
 	var json = JSON.parse(SLUtils.parseAccessToken(req.query.access_token));
