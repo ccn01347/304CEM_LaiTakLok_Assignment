@@ -111,15 +111,19 @@ app.post('/api/login', (req, res) => {
 		if (verifiedResult.status_code === 200){
 			var current = new Date();
 			var userData = verifiedResult.data;
+			var access_token = SLUtils.genAccessToken(userData._id, userData.email, userData.pwd, current);
 			var to = {
 				last_login : current,
-				access_token : SLUtils.genAccessToken(userData._id, userData.email, userData.pwd, current)
+				access_token : access_token
 			};
 
-			console.log(userData);
+			var newUserData = JSON.parse(JSON.stringify(userData));
+			newUserData.last_login = current;
+			newUserData.access_token = access_token;
+
+			console.log(newUserData);
 			members.findOneAndUpdate(userData, to).then(result => {
-				console.log(004);
-				res.json(apiResult.create(200, result, null));
+				res.json(apiResult.create(200, newUserData, null));
 			}).catch((error) => {
 				res.json(apiResult.create(501, null, error));
 			});

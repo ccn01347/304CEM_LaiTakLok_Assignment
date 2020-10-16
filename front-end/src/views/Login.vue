@@ -60,7 +60,6 @@
 </template>
 <script>
 import Constants from './../Constants'
-import Cookies from 'js-cookie'
 import VFacebookLogin from 'vue-facebook-login-component'
 import FBHelper from "./../FBHelper.js"
 
@@ -88,15 +87,16 @@ import FBHelper from "./../FBHelper.js"
             var config = { expires: 7 };
 
             if (this.model.rememberControl){
-                Cookies.set('email', this.model.email, config);
-                Cookies.set('password', this.model.password, config);
+                this.$cookie.set('email', this.model.email, config);
+                this.$cookie.set('password', this.model.password, config);
             }
             console.log("STEVE-", userInfo);
             var userId = userInfo._id;
-            Cookies.set('userid', userId, config);
-            Cookies.set('access_token', userInfo.access_token, config);
-            Cookies.set("avatarURL", userInfo.avatarURL);             
-            Cookies.set("username", userInfo.username);             
+            this.$cookie.set('userid', userId, config);
+            this.$cookie.set('access_token', userInfo.access_token, config);
+            this.$cookie.set("avatarURL", userInfo.avatarURL);             
+            this.$cookie.set("username", userInfo.username);
+            console.log("store Cookies", userInfo.access_token);
 
             this.$router.push({path: '/'});
         },
