@@ -152,6 +152,14 @@
 
           userid
 
+### ```POST``` /api/changepassword
+  - Body
+    - Required:
 
+          userid
+          access_token
+          pwd
+          topwd
+          topwd2
 
 
