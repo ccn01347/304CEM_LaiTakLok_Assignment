@@ -110,7 +110,9 @@
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <a href="#" class="btn btn-info" @click="onChangePassword">Change Password</a>
+
+                                        <!-- <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Change Password"
                                                         placeholder="New Password"
@@ -127,7 +129,7 @@
                                                         v-model="tempModel.pwd2"
                                                         type="password"
                                             />
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 
@@ -158,6 +160,50 @@
                 <template slot="footer">
             </template>
         </modal>
+
+        <modal :show.sync="showChangePwdModal">
+          <template slot="header">
+            <h1 class="modal-title">Change Password</h1>
+          </template>
+            <form role="form">
+                <base-input class="input-group-alternative mb-3"
+                            placeholder="Old Password"
+
+                            type="password"
+                            addon-left-icon="ni ni-lock-circle-open"
+                            v-model="pwdModel.old"/>
+
+                <base-input class="input-group-alternative mb-3"
+                            placeholder="New Password"
+                            type="password"
+                            addon-left-icon="ni ni-lock-circle-open"
+                            v-model="pwdModel.new1"
+                            />
+                <base-input class="input-group-alternative mb-3"
+                            placeholder="Confirm New Password"
+                            type="password"
+                            addon-left-icon="ni ni-lock-circle-open"
+                            v-model="pwdModel.new2"
+                            />
+
+                <div class="text-muted font-italic">
+                    <small>password strength: 
+                        <span v-if="passwordValidation.errors.length <= 0" class="text-success font-weight-700">strong</span>
+                        <span v-if="passwordValidation.errors.length > 0" class="text-danger font-weight-700">weak</span>
+                    </small>
+                    <transition name="hint" appear>
+                        <div v-if='passwordValidation.errors.length > 0 && this.pwdModel.new1.length > 0' class='hints'>
+                            <p class="text-warning font-weight-700" v-for='error in passwordValidation.errors' v-bind:key="error">- {{error}}</p>
+                        </div>
+                    </transition>
+                </div>                            
+            </form>
+          <template slot="footer">
+            <div class="text-center">
+                <base-button v-on:click.native="onConfirmChangePwd" type="primary" class="my-4">Confirm</base-button>
+            </div>
+          </template>
+        </modal>
     </div>
 </template>
 <script>
@@ -175,21 +221,29 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
         model: {
           username: '',
           email: '',
-          pwd: '',
-          pwd2: '',
           aboutme: ''
         },
         tempModel:{
           username: '',
           email: '',
-          pwd: '',
-          pwd2: '',
           aboutme: ''
+        },
+        pwdModel:{
+            old: '',
+            new1: '',
+            new2: ''
         },
         imageUrl:'',
         showUploadModal: false,
+        showChangePwdModal: false,
         favlistCount: 0,
-        uploadCount: 0
+        uploadCount: 0,
+        rules: [
+                { message:'One lowercase letter required.', regex:/[a-z]+/ },
+                { message:"One uppercase letter required.",  regex:/[A-Z]+/ },
+                { message:"8 characters minimum.", regex:/.{8,}/ },
+                { message:"One number required.", regex:/[0-9]+/ }
+            ]
       }
     },
     mounted(){
@@ -207,7 +261,7 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
 
     },
     methods:{
-        onEditProfile(){
+        onEditProfile: function(){
             var userid = Cookies.get("userid");
             var access_token = Cookies.get("access_token");
             var data = {
@@ -263,7 +317,7 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
 
 
         },
-        fetchProfile(){
+        fetchProfile: function(){
             var userid = Cookies.get("userid");
             var access_token = Cookies.get("access_token");
             var data = {
@@ -334,22 +388,107 @@ import UploadAvatarView from './../components/UploadAvatarView.vue'
                 this.uploadCount = result.data;
             })
         },
-        onEditAvatar(){
+        onEditAvatar: function(){
             this.showUploadModal = true;
         },
-        onUploadImageDone(){
+        onUploadImageDone: function(){
             this.fetchProfile();
             this.showUploadModal = false;
+        },
+        onChangePassword: function(){
+            this.showChangePwdModal = true;
+        },
+        onConfirmChangePwd: function(){
+            var body = {
+                userid: Cookies.get("userid"),
+                access_token: Cookies.get("access_token"),
+                pwd: this.pwdModel.old,
+                topwd: this.pwdModel.new1,
+                topwd2: this.pwdModel.new2
+            }
+            const options = {
+                method: "POST",
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(body)
+            };
+
+            const api = Constants.API.Host + '/api/changepassword';
+            fetch(api, options).then(response => {return response.json()}).then(result => {
+                if (result.status_code == 200){
+                    // success
+                    this.$alert("Your password is updated", "Done", "success").then(() => {
+                        this.pwdModel = {
+                            old: '', new1: '', new2: ''
+                        }
+                        this.showChangePwdModal = false;
+                    });
+                }else{
+                    this.$alert(result.error, "Warning", "error");
+                }
+            });
         }
 
     },
     computed:{
         headerStyle(){
             return "min-height: 600px; background-image: url(" + this.imageUrl + "); background-size: cover; background-position: center top;";
+        },
+        passwordValidation () {
+            let errors = []
+            for (let condition of this.rules) {
+                if (!condition.regex.test(this.pwdModel.new1)) {
+                    errors.push(condition.message)
+                }
+            }
+            if (errors.length === 0) {
+                return { valid:true, errors }
+            } else {
+                return { valid:false, errors }
+            }
         }
     }
   };
 </script>
 <style>
 
+.hints {
+    max-width:400px;
+    padding:1em;
+    background:whitesmoke;
+    margin: 1em 0;
+    font-size: .9em;
+    color:darken(#D4DEDF, 50%);
+    h2 {
+        margin: .5em 0 .2em 0;
+    }
+    p {
+        margin: 0;
+        padding-left:1em;
+        &::before {
+            content:">";
+            font-size:.9em;
+            margin-right:6px;
+            display:inline-block;
+        }
+    }
+}
+.hint {
+    &-enter {
+        opacity:0;
+        transform:translate3d(-20px,0,0);
+    }
+    &-leave-to {
+        opacity:0;
+        transform:translate3d(0, 20px, 0);
+    }
+    &-enter-active {
+        transition:300ms;
+    }
+    &-leave-active {
+        transition:400ms;
+    }
+}
 </style>

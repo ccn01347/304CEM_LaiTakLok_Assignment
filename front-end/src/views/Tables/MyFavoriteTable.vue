@@ -58,7 +58,7 @@ import StickerDetailsModal from './../Modals/StickersDetails.vue'
         selectedSticker: null,
         showModal: false,
         currentPage: 0,
-        countPerPage: 2,
+        countPerPage: 10,
         total: 0
 
       }

@@ -319,6 +319,55 @@ app.post('/api/membereditinfo', (req, res) => {
 
 });
 
+// ## API: Change Password
+app.post('/api/changepassword', (req, res) => {
+	var oldpwd = req.body.pwd;
+	var newpwd = req.body.topwd;
+	var newpwd2 = req.body.topwd2;
+	var userid = req.body.userid;
+	var access_token = req.body.access_token;
+
+	if (newpwd2 !== newpwd){
+		// 1. Check password verification.
+		res.json(apiResult.create(501, null, "password not matched."))
+	}
+
+	// 2. Get the access_token
+	if (checkAccessTokenMatched(userid, access_token)){
+		// 2. a. Get record
+		members.findByUserId(userid).then(result => {
+			// 2. b. Check password
+			var userInfo = result[0];
+			console.log(oldpwd, userInfo.pwd);
+			if (userInfo.pwd === oldpwd){
+				// 2.c. update profile.
+				var from = {
+					_id : monk.id(userid)
+				}
+				var to = {
+					pwd : newpwd
+				}
+				console.log(from, to);
+				members.update(from, to).then(result => {
+					res.json(apiResult.create(200, result, null));
+				}).catch(error => {
+					res.json(apiResult.create(501, null, error))
+				});
+			}else{
+							console.log(userInfo);
+
+				res.json(apiResult.create(501, null, "Password is wrong."));
+			}
+		}).catch(error => {
+			res.json(apiResult.create(501, null, error))
+		});
+
+	}else{
+		res.json(apiResult.create(501, null, "Permission denied."))
+	}
+
+})
+
 // ## API: member info
 app.post('/api/memberinfo', (req, res) => {
 
