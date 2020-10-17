@@ -1,7 +1,8 @@
 # 304CEM_LaiTakLok_Assignment
 [304CEM] Web API Development Assignment(Lai Tak Lok 197370857)
 
-# Prerequisition
+# Getting Start
+## Prerequisition
 - Cloudinary API
   - App Name
   - API Key
@@ -23,7 +24,7 @@ SENDGRID_VERIFICATIONTEMPLATE_ID='xxxxx'
 ```
 
 
-# 1. Install Back-end & front-end
+## 1. Install Back-end & front-end
 After you download the project, first redirect to repostory.
 
     cd 304CEM_LaiTakLok_Assignment
@@ -33,11 +34,11 @@ After you download the project, first redirect to repostory.
     npm install
 
 
-# 2. Start server
+## 2. Start server
     cd ../
     npm run watch
 
-# 3. Start front-end
+## 3. Start front-end
 Open new tab of your command-promte
     
     cd front-end
@@ -50,6 +51,13 @@ By default, the server is running with port 4000 and the front-end with 8080. i.
   - http://localhost:4000
 - Front-end url:
   - http://localhost:8080/main
+  
+# Database Structure
+- Name: 304CEM_LTL
+  - member_signup
+  - member_favourite
+  - member_upload
+  - server_general
   
 # API Documentation
   https://documenter.getpostman.com/view/13093604/TVRoY6u6
